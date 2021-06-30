@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <title>MineWeb</title>
+    </head>
+    <body>
+        <div class="overflow-hidden">
+            <div class="row fixed-top darknav">
+                <div class="col-2 pt-3 pl-4">
+                    <i class="fa fa-heart heart" aria-hidden="true"></i>
+                    <i class="fa fa-heart heart" aria-hidden="true"></i>
+                    <i class="fa fa-heart heart" aria-hidden="true"></i>
+                </div>
+                <div id="userName" class="col-2 pt-3">SS110819013</div>
+                <div class="col-6 pt-3">Level:</div>
+                <div id="gear" class="text-right col-2 pr-4">
+                    <i class="settings fa fa-cog" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div id="character">
+              <div id="face">
+                <div class="d-flex">
+                  <div class="eyes"></div>
+                  <div class="eyes"></div>
+                </div>
+                <div class="mouth">
+                  <div class="text-center">V</div>
+                </div>
+              </div>
+            </div>
+            <div id="target"></div>
+            <div id="game"></div>
+            <div class="d-flex justify-content-center fixed-bottom">
+                <div class="inventorybar d-flex justify-content-center">
+                    <div id="choser"></div>
+                    <div id="inventory1" class="inventory m-3 c-x text-center">B</div>
+                    <div id="inventory2" class="inventory m-3 c-1"></div>
+                    <div id="inventory3" class="inventory m-3 c-2"></div>
+                    <div id="inventory4" class="inventory m-3 c-3"></div>
+                    <div id="inventory5" class="inventory m-3 c-4"></div>
+                    <div id="inventory6" class="inventory m-3 c-x text-center">...</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="startup" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">MineWeb</h5>
+                </div>
+                <div class="modal-body">
+                    輸入不存在的世界名稱將創造新世界
+                    <br>
+                    輸入已存在的世界名稱將讀取該世界
+                    <br>
+                    <div class="modalInput">
+                        <span class="modalInput input-text">世界名稱:</span>
+                        <input type="text" class="form-control"id="worldName" name="worldName" placeholder="必填" >
+                    </div>
+                    <div class="modalInput">
+                        <span class="modalInput input-text">玩家名稱:</span>
+                        <input type="text" class="form-control"id="userName" name="userName" placeholder="必填" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="allworld btn btn-secondary">所有世界</button>
+                  <button type="button" class="requestworld btn btn-primary">確定</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="showworld" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content modal-dialog-scrollable modal-dialog">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">MineWeb</h5>
+              </div>
+              <div class="modal-body">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="w0">編號</th>
+                      <th scope="w1">世界名稱</th>
+                      <th scope="w2">修改者</th>
+                      <th scope="w3">最近修改</th>
+                      <th scope="w4">匿名登入</th>
+                    </tr>
+                  </thead>
+                  <tbody class="modalInput">
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="backtomain btn btn-primary">返回</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="register" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">正在創造世界</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="modalInput">
+                        <select class="custom-select" id="worldType" name="worldType">
+                            <option disabled selected value>世界類別</option>
+                            <option value="森林">森林</option>
+                            <option value="沙漠">沙漠</option>
+                            <option value="孤島">孤島</option>
+                            <option value="草原">草原</option>
+                        </select>
+                    </div>
+                    <div class="modalInput">
+                        <span class="input-text">密碼(請牢記):</span>
+                        <input type="password" class="form-control"id="regpassword" name="regpassword" placeholder="必填" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="backtomain btn btn-secondary">返回</button>
+                  <button type="button" class="register btn btn-primary">確定</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">正在進入世界</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="modalInput">
+                        <span class="input-text">請輸入密碼:</span>
+                        <input type="password" class="form-control"id="password" name="password" placeholder="必填" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="backtomain btn btn-secondary">返回</button>
+                  <button type="button" class="login btn btn-primary">確定</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="savegame" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">儲存世界</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="save-spin" class="modal-body modalInput"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="savegame btn btn-primary">儲存</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="inven" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="inv" class="modal-body d-flex flex-wrap">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <template id="tipTemplate01" style="display: none;">
+            <div class="tip">
+              <i class="fa fa-exclamation-circle"></i>
+              <span>這是一個必須要填的欄位</span>
+            </div>
+        </template>
+        <template id="spinner" style="display: none;">
+            <div class="tip spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </template>
+        <template id="tr01" style="display: none;">
+          <tr>
+              <th scope="row">LIST_HERE</th>
+              <td>WNAME_HERE</td>
+              <td>UNAME_HERE</td>
+              <td>MTIME_HERE</td>
+              <td id="ID_HERE" class="linker">LINK_HERE</td>
+          </tr>
+        </template>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
